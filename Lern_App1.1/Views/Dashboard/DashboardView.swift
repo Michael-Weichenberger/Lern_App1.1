@@ -4,6 +4,8 @@ struct DashboardView: View {
     @EnvironmentObject var userSettings: UserSettings
     @ObservedObject var learningPlanViewModel = LearningPlanViewModel()
     @ObservedObject var examsViewModel = ExamsViewModel()
+    @State private var scannedText = ""
+    
     
     var body: some View {
         ScrollView {
@@ -144,11 +146,12 @@ struct DashboardView: View {
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
             
-            NavigationLink(destination: DocumentScannerView()) {
+            NavigationLink(destination: DocumentScannerView(recognizedText: $scannedText)) {
                 Text("Dokument scannen")
                     .font(.subheadline)
                     .frame(maxWidth: .infinity, alignment: .trailing)
             }
+
         }
     }
 }

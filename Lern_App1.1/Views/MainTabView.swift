@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MainTabView: View {
     @EnvironmentObject var userSettings: UserSettings
+    @State private var scannedText = "" // WICHTIG: Diese Variable fehlte
     
     var body: some View {
         TabView {
@@ -10,7 +11,8 @@ struct MainTabView: View {
                     Label("Dashboard", systemImage: "house.fill")
                 }
             
-            DocumentScannerView()
+        
+            DocumentScannerView(recognizedText: $scannedText)
                 .tabItem {
                     Label("Scannen", systemImage: "doc.text.viewfinder")
                 }
